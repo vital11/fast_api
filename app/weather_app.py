@@ -10,7 +10,7 @@ router = fastapi.APIRouter()
 
 
 @router.get('/app/weather/{city}')
-def weather(loc: Location = Depends(), units: Optional[str] = 'metric'):
-    report = open_weather_service.get_report(loc.city, loc.state, loc.country, units)
+async def weather(loc: Location = Depends(), units: Optional[str] = 'metric'):
+    report = await open_weather_service.get_report_async(loc.city, loc.state, loc.country, units)
     return report
 
